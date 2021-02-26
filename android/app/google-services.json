@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "325256037931",
+    "project_id": "eshopke-9f17f",
+    "storage_bucket": "eshopke-9f17f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325256037931:android:7a9b45d7586a88912bcc6e",
+        "android_client_info": {
+          "package_name": "com.muigaidaniel.eshopke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325256037931-g6uuhckkefv5t8ht7uta1ehhg1qslr2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdJAiMiMcmChIY5mBpi5xFzOHEEWM2u6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325256037931-g6uuhckkefv5t8ht7uta1ehhg1qslr2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
