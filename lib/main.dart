@@ -1,3 +1,4 @@
+import 'package:eshopke/screens/home.dart';
 import 'package:eshopke/screens/login.dart';
 import 'package:eshopke/states/currentstate.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context)=> CurrentState(),
       child: MaterialApp(
-        home: LoginScreen(),
+        home: HomeScreen(),
         title: 'E-Shop KE',
         theme: ThemeData(
           accentColor: Colors.blueAccent,
