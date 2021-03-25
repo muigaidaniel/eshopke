@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:eshopke/data/itemlist.dart';
 
-class Items extends StatefulWidget {
+class Favourites extends StatefulWidget {
   @override
-  _ItemsState createState() => _ItemsState();
+  _FavouritesState createState() => _FavouritesState();
 }
 
-class _ItemsState extends State<Items> {
-
+class _FavouritesState extends State<Favourites> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (BuildContext context, int index)=> Item(
-          itemname: item_list[index]['Name'],
-          itempicture: item_list[index]['Picture'],
-          itemprice: item_list[index]['Price'],
-        ),
-        itemCount: item_list.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index)=> Favourite(
+        itemname: item_list[index]['Name'],
+        itempicture: item_list[index]['Picture'],
+        itemprice: item_list[index]['Price'],
+      ),
+      itemCount: item_list.length,
     );
   }
 }
 
-class Item extends StatelessWidget {
+class Favourite extends StatelessWidget {
   final itemname;
   final itempicture;
   final itemprice;
-  Item({this.itemname,this.itempicture,this.itemprice});
+  Favourite({this.itemname,this.itempicture,this.itemprice});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class Item extends StatelessWidget {
       child: Hero(
         tag: itemname,
         child: Material(
-          child: InkWell(onTap: (){Navigator.pushNamed(context, '/itemdetails',arguments: Item(itemname: itemname,itempicture: itempicture,itemprice: itemprice,));},
+          child: InkWell(onTap: (){Navigator.pushNamed(context, '/itemdetails',arguments: Favourite(itemname: itemname,itempicture: itempicture,itemprice: itemprice,));},
             child: GridTile(
               child: Image.asset(itempicture,),
               footer: Container(
@@ -52,3 +51,4 @@ class Item extends StatelessWidget {
     );
   }
 }
+

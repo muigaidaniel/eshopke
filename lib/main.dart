@@ -1,4 +1,6 @@
+import 'package:eshopke/screens/cart.dart';
 import 'package:eshopke/screens/home.dart';
+import 'package:eshopke/screens/itemdetails.dart';
 import 'package:eshopke/screens/login.dart';
 import 'package:eshopke/states/currentstate.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +20,10 @@ class App extends StatelessWidget {
       create: (context)=> CurrentState(),
       child: MaterialApp(
         home: HomeScreen(),
+        routes: {
+          '/itemdetails':(context)=> Itemdetails(item: ModalRoute.of(context).settings.arguments),
+          '/cart':(context)=> Cart()
+        },
         title: 'E-Shop KE',
         theme: ThemeData(
           accentColor: Colors.blueAccent,
