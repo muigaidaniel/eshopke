@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:eshopke/components/input_field.dart';
+import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,17 +13,19 @@ class Login extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Login', style: TextStyle(fontSize: 50,color: Colors.lightBlue),),
+                  child: Text('Register', style: TextStyle(fontSize: 50,color: Colors.lightBlue),),
                 ),
+                InputField(),
+                InputField(),
                 InputField(),
                 InputField(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    RaisedButton(child: Text('Login'),onPressed: (){
+                    RaisedButton(child: Text('Sign up'),onPressed: (){
                       Navigator.pushNamed(context, 'homepage');},),
-                    RaisedButton(child: Text('Register'),onPressed: (){
-                      Navigator.pushNamed(context, 'register');},),
+                    RaisedButton(child: Text('Log in'),onPressed: (){
+                      Navigator.pushNamed(context, 'login');},),
                   ],
                 )
               ],

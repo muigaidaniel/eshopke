@@ -2,6 +2,7 @@ import 'package:eshopke/screens/cart.dart';
 import 'package:eshopke/screens/home.dart';
 import 'package:eshopke/screens/itemdetails.dart';
 import 'package:eshopke/screens/login.dart';
+import 'package:eshopke/screens/register.dart';
 import 'package:eshopke/states/currentstate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,11 @@ class App extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context)=> CurrentState(),
       child: MaterialApp(
-        home: HomeScreen(),
+        home: Login(),
         routes: {
+          'homepage': (context)=> HomeScreen(),
+          'register':(context)=> Register(),
+          'login' : (context)=> Login(),
           '/itemdetails':(context)=> Itemdetails(item: ModalRoute.of(context).settings.arguments),
           '/cart':(context)=> Cart()
         },
