@@ -4,6 +4,10 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))
+      ),
+      margin: EdgeInsets.only(bottom: 10),
       height: MediaQuery.of(context).size.height*0.125,
       child: ListView(
         scrollDirection: Axis.horizontal,
@@ -30,7 +34,7 @@ class Category extends StatelessWidget {
           onTap: (){},
           child: Container(
             height: MediaQuery.of(context).size.height*0.1,
-            width: MediaQuery.of(context).size.width*0.25,
+            width: MediaQuery.of(context).size.width*0.26,
             child: ListTile(
               title: Image.asset(image_location, height: MediaQuery.of(context).size.height*0.07),
               subtitle: Text(caption, textAlign: TextAlign.center,),

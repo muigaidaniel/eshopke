@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height*0.12,
+                      height: 80,
                       child: RaisedButton(
                         color: Theme.of(context).primaryColor,
                         shape: RoundedRectangleBorder(
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
                             content: Text('Login successful!')));},),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 70),
+                      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2),
                       child: Row(
                         children: [
                           Text("Don't have an account?"),

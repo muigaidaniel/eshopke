@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class Navbar extends StatelessWidget {
@@ -34,15 +35,15 @@ class Navbar extends StatelessWidget {
           InkWell(
               onTap: (){},
               child: ListTile(
-                  title: Text('Categories'),
-                  leading: Icon(Icons.category)
+                  title: Text('My account'),
+                  leading: Icon(Icons.person)
               )
           ),
           InkWell(
               onTap: (){},
               child: ListTile(
-                  title: Text('My account'),
-                  leading: Icon(Icons.person)
+                  title: Text('Log out'),
+                  leading: Icon(Icons.logout)
               )
           ),
           Divider(),

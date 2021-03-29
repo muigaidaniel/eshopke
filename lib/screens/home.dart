@@ -1,11 +1,14 @@
 import 'package:eshopke/components/appbar.dart';
 import 'package:eshopke/components/categories.dart';
+import 'package:eshopke/components/container_labels.dart';
 import 'package:eshopke/components/items.dart';
 import 'package:eshopke/components/favourites.dart';
 import 'package:eshopke/components/navbar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  String label;
+  HomeScreen({this.label});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +24,12 @@ class HomeScreen extends StatelessWidget {
       drawer: Navbar(),
       body: ListView(
         children: [
-          Container(padding: const EdgeInsets.all(8.0), child: Text('Categories')),
+          Label(label: 'Categories'),
           Categories(),
-          Container(padding: const EdgeInsets.all(8.0), child: Text('Items'),),
-          Container(height: MediaQuery.of(context).size.height*0.6,child: Items()),
-          Container(padding: const EdgeInsets.all(8.0), child: Text('Favourites')),
-          Container(height: MediaQuery.of(context).size.height*0.6,child: Favourites())
+          Label(label: 'Items'),
+          Items(),
+          Label(label: 'Favourites'),
+          Favourites(),
         ],
       ) ,
     );

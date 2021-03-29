@@ -34,7 +34,7 @@ class _RegisterState extends State<Register> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       width: MediaQuery.of(context).size.width,
-                      height: 75,
+                      height: 80,
                       child: RaisedButton(
                         color: Theme.of(context).primaryColor,
                         shape: RoundedRectangleBorder(
@@ -47,7 +47,7 @@ class _RegisterState extends State<Register> {
                             content: Text('Registration successful!')));},),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 100),
+                      margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.2),
                       child: Row(
                         children: [
                           Text('Have an account?'),
