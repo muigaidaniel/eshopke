@@ -14,20 +14,18 @@ class _CartState extends State<Cart> {
       appBar: AppBarNav(title: Text('Cart'),appBar: AppBar(),),
       body: Column(
         children: [
-          Container( height: 500,child: CartItems()),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              color: Colors.lightBlue,
-              child: Row(
-                children: [
-                  Expanded(child: Text('Total: Ksh 1,000')),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(onPressed: (){},child: Text('Checkout'),),
-                  ),
-                ],
-              ),
+          Container( height: MediaQuery.of(context).size.height*0.75,child: CartItems()),
+          Container(
+            margin: EdgeInsets.fromLTRB(8.0,8.0,8.0,0),
+            color: Theme.of(context).primaryColor,
+            child: Row(
+              children: [
+                Expanded(child: Text('Total: Ksh 1,000')),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(onPressed: (){},child: Text('Checkout'),),
+                ),
+              ],
             ),
           )
         ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:eshopke/screens/register.dart';
 
 class InputField extends StatefulWidget {
   String fieldName;
@@ -14,11 +13,12 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      width: MediaQuery.of(context).size.width*0.9,
+      margin: EdgeInsets.symmetric(vertical: 10),
       child: TextField(
         style: TextStyle(fontSize: 20,),
         decoration: InputDecoration(
-            hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            hintStyle: TextStyle( fontSize: 20),
             hintText: widget.fieldName,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),

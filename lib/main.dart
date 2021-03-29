@@ -30,6 +30,7 @@ class App extends StatelessWidget {
         },
         title: 'E-Shop KE',
         theme: ThemeData(
+          primaryColor: Colors.purple,
           accentColor: Colors.blueAccent,
           primarySwatch: Colors.cyan,
         ),

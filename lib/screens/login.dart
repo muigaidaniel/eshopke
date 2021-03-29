@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
             height: 500,
             child: Column(
               children: [
-                Padding(padding: const EdgeInsets.all(8.0), child: Text('Login', style: TextStyle(fontSize: 50,color: Colors.lightBlue),),),
+                Padding(padding: const EdgeInsets.all(8.0), child: Text('Login', style: TextStyle(fontSize: 50,color: Theme.of(context).primaryColor),),),
                 InputField(fieldName: 'Email'),
                 InputField(fieldName: 'Password',),
                 Column(
@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       width: MediaQuery.of(context).size.width,
-                      height: 75,
+                      height: MediaQuery.of(context).size.height*0.12,
                       child: RaisedButton(
                         color: Theme.of(context).primaryColor,
                         shape: RoundedRectangleBorder(
@@ -39,9 +39,17 @@ class _LoginState extends State<Login> {
                             duration: Duration(seconds: 2),
                             content: Text('Login successful!')));},),
                     ),
-                    RaisedButton(child: Text('Sign Up'),onPressed: (){
-                      Navigator.pushNamed(context, 'register');
-                      },),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 70),
+                      child: Row(
+                        children: [
+                          Text("Don't have an account?"),
+                          FlatButton(child: Text('Sign Up',style: TextStyle(color: Theme.of(context).primaryColor),),onPressed: (){
+                            Navigator.pushNamed(context, 'register');
+                            },),
+                        ],
+                      ),
+                    ),
                   ],
                 )
               ],
