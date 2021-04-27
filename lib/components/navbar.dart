@@ -1,16 +1,28 @@
-
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class Navbar extends StatelessWidget {
+class Navbar extends StatefulWidget {
+  @override
+  _NavbarState createState() => _NavbarState();
+}
+
+class _NavbarState extends State<Navbar> {
+  final GoogleSignIn googleSignIn = new GoogleSignIn();
+  Future logOut() async{
+    await googleSignIn.disconnect();
+    await FirebaseAuth.instance.signOut();
+    Navigator.popAndPushNamed(context,'login');
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: [
           UserAccountsDrawerHeader(
-              accountName: Text('Daniel'),
-              accountEmail: Text('muigaidaniel81@gmail.com'),
-              currentAccountPicture: CircleAvatar(child: Icon(Icons.person),)),
+              accountName: Text('googleSignIn.currentUser.displayName'),
+              accountEmail: Text('googleSignIn.currentUser.email'),
+              /*currentAccountPicture: Image.network(googleSignIn.currentUser.photoUrl)*/),
           InkWell(
               onTap: (){},
               child: ListTile(
@@ -40,7 +52,9 @@ class Navbar extends StatelessWidget {
               )
           ),
           InkWell(
-              onTap: (){},
+              onTap: (){
+                logOut();
+                },
               child: ListTile(
                   title: Text('Log out'),
                   leading: Icon(Icons.logout)
