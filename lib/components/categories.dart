@@ -34,7 +34,7 @@ class Category extends StatelessWidget {
           onTap: (){},
           child: Container(
             height: MediaQuery.of(context).size.height*0.1,
-            width: MediaQuery.of(context).size.width*0.26,
+            width: MediaQuery.of(context).size.width*0.245,
             child: ListTile(
               title: Image.asset(image_location, height: MediaQuery.of(context).size.height*0.07),
               subtitle: Text(caption, textAlign: TextAlign.center,),

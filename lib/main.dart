@@ -1,18 +1,24 @@
-import 'package:eshopke/screens/cart.dart';
-import 'package:eshopke/screens/home.dart';
-import 'package:eshopke/screens/itemdetails.dart';
-import 'package:eshopke/screens/login.dart';
-import 'package:eshopke/screens/register.dart';
-import 'package:eshopke/screens/splashscreen.dart';
+import 'package:eshopke/data/itemlist.dart';
+import 'database/cart_item.dart';
+import 'screens/cart.dart';
+import 'screens/home.dart';
+import 'screens/itemdetails.dart';
+import 'screens/login.dart';
+import 'screens/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eshopke/business_logic/user_provider.dart';
+import 'business_logic/user_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(ChangeNotifierProvider(create: (_)=>UserProvider.initialize(),
+  runApp(MultiProvider(
+      providers:[
+      ChangeNotifierProvider(create: (_)=>UserProvider.initialize()),
+      ChangeNotifierProvider(create: (_)=>ItemNotifier()),
+      ChangeNotifierProvider(create: (_)=>CartItemNotifier()),
+      ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           home: ScreensController(),
@@ -20,7 +26,7 @@ void main() async {
             'homepage': (context)=> HomeScreen(),
             'register':(context)=> Register(),
             'login' : (context)=> Login(),
-            '/itemdetails':(context)=> Itemdetails(item: ModalRoute.of(context).settings.arguments),
+            '/itemdetails':(context)=> Itemdetails(),
             '/cart':(context)=> Cart(),
           },
           title: 'E-Shop KE',

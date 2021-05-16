@@ -2,11 +2,12 @@ import 'package:eshopke/business_logic/user_provider.dart';
 import 'package:eshopke/components/appbar.dart';
 import 'package:eshopke/components/categories.dart';
 import 'package:eshopke/components/container_labels.dart';
-import 'package:eshopke/components/items.dart';
-import 'package:eshopke/components/favourites.dart';
+import 'package:eshopke/data/itemlist.dart';
+import 'package:eshopke/screens/itemdetails.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class HomeScreen extends StatefulWidget {
   String label;
@@ -25,8 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    ItemNotifier itemNotifier= Provider.of<ItemNotifier>(context,listen: false);
+    getItems(itemNotifier);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final user= Provider.of<UserProvider>(context);
+    ItemNotifier itemNotifier= Provider.of<ItemNotifier>(context);
     return Scaffold(
       appBar: AppBarNav(
         title: Text('E-SHOP KE'),
@@ -41,12 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("user.user.displayName"),
+              accountName: Text("user.user.uid"),
               accountEmail: Text("user.user.email"),
               //currentAccountPicture: Image.network("user.user.photoURL")
             ),
             InkWell(
-                onTap: (){},
+                onTap: (){Navigator.pushNamed(context, 'homepage');},
                 child: ListTile(
                     title: Text('Home'),
                     leading: Icon(Icons.home)
@@ -105,9 +114,37 @@ class _HomeScreenState extends State<HomeScreen> {
           Label(label: 'Categories'),
           Categories(),
           Label(label: 'Items'),
-          Items(),
-         // Label(label: 'Favourites'),
-         // Favourites(),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: GridView.builder(
+                gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index){
+                  return Card(
+                    elevation: 10,
+                    color: Colors.white,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {return Itemdetails();}));
+                        itemNotifier.currentItem = itemNotifier.item_list[index];
+                        },
+                          child: GridTile(
+                            child: Image.asset('assets/items/${itemNotifier.item_list[index].itemname}.jpg'),
+                            footer: Container(
+                              color: Colors.white70,
+                              child: ListTile(
+                                leading: Text(itemNotifier.item_list[index].itemname,textAlign: TextAlign.left,),
+                                title: Text("Ksh ${itemNotifier.item_list[index].price}",textAlign: TextAlign.right,),
+                              ),
+                            ),
+                          ),
+                    ),
+                  );
+
+                },
+                itemCount: itemNotifier.item_list.length),
+          ),
         ],
       ) ,
     );

@@ -26,7 +26,7 @@ class _RegisterState extends State<Register> {
       key: _key,
       body: user.status == Status.Authenticating ? Loading()
           : user.status == Status.Authenticated ? HomeScreen()
-              : SafeArea(
+          : SafeArea(
                   child: Center(
                     child: SingleChildScrollView(
                       child: Container(
@@ -34,12 +34,7 @@ class _RegisterState extends State<Register> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Sign Up',
-                                style: TextStyle(
-                                    fontSize: 50,
-                                    color: Theme.of(context).primaryColor),
-                              ),
+                              child: Image.asset('assets/logo.png',height: 150,color: Theme.of(context).primaryColor,),
                             ),
                             Form(
                               key: _formKey,
@@ -266,6 +261,7 @@ class _RegisterState extends State<Register> {
                                   ),
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
+                                      Navigator.pop(context);
                                       if (!await user.signUp(_username, _email,
                                           _password, _phoneNumber))
                                         _key.currentState.showSnackBar(SnackBar(

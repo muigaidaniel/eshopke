@@ -61,6 +61,7 @@ class UserProvider with ChangeNotifier{
           {
             "name" : googleUser.displayName,
             "email" : googleUser.email,
+            'userId': _auth.currentUser.uid,
           });
       _status =Status.Authenticated;
       notifyListeners();
@@ -87,7 +88,8 @@ class UserProvider with ChangeNotifier{
           'password':password,
         };
         _userServices.createUser(values);
-        //Navigator.pop(context);
+        _status =Status.Authenticated;
+        notifyListeners();
       } );
       return true;
     }on FirebaseAuthException catch (e) {

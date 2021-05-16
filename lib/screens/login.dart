@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eshopke/components/loading.dart';
 import 'package:eshopke/screens/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:eshopke/business_logic/user_provider.dart';
 
@@ -18,29 +15,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
-  bool isLoggedin= false;
   String _email="";
   String _password="";
-  Future signInWithEmail () async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _email,
-          password: _password
-      );
-      setState(() {
-        isLoggedin=true;
-      });
-      if(isLoggedin){
-        Navigator.popAndPushNamed(context, 'homepage');
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Fluttertoast.showToast(msg:'No user found registered with that email.');
-      } else if (e.code == 'wrong-password') {
-        Fluttertoast.showToast(msg:'Wrong password for that user.');
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +31,8 @@ class _LoginState extends State<Login> {
             child: Container(
               child: Column(
                 children: [
-                  Padding(padding: const EdgeInsets.all(8.0), child: Text('Login', style: TextStyle(fontSize: 50,color: Theme.of(context).primaryColor),),),
+                  Padding(padding: const EdgeInsets.all(8.0),
+                child: Image.asset('assets/logo.png',height: 150,color: Theme.of(context).primaryColor,)),
                   Form(
                     key: _formKey,
                     child: Column(
@@ -88,6 +65,7 @@ class _LoginState extends State<Login> {
                             onChanged: (val){setState(()=>_password=val);},
                             style: TextStyle(fontSize: 20,),
                             decoration: InputDecoration(hintStyle: TextStyle( fontSize: 20), hintText: 'Password', enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2,),), border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3,),), prefixIcon: Padding(child: Icon(Icons.lock,color: Theme.of(context).primaryColor), padding: EdgeInsets.only(left: 30, right: 10),)),
+                            obscureText: true,
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "This field is required";
