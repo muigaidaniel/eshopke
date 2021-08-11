@@ -54,7 +54,6 @@ class UserProvider with ChangeNotifier{
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
       await FirebaseAuth.instance.signInWithCredential(credential);
-
       CollectionReference users= FirebaseFirestore.instance.collection('users');
       final firestoreInstance = FirebaseFirestore.instance;
       firestoreInstance.collection("users").add(
@@ -75,7 +74,7 @@ class UserProvider with ChangeNotifier{
 
   }
 
-  Future<bool> signUp(String name, String email, String password, String phoneNumber)async{
+  Future<bool> signUp(String name, String email, String password,)async{
     try{
       _status =Status.Authenticating;
       notifyListeners();
@@ -84,8 +83,6 @@ class UserProvider with ChangeNotifier{
           'name':name,
           'email':email,
           'userId':user.user.uid,
-          'phoneNumber':phoneNumber,
-          'password':password,
         };
         _userServices.createUser(values);
         _status =Status.Authenticated;

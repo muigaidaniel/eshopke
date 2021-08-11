@@ -16,7 +16,6 @@ class _RegisterState extends State<Register> {
 
   String _username = "";
   String _email = "";
-  String _phoneNumber = "";
   String _password = "";
 
   @override
@@ -143,60 +142,6 @@ class _RegisterState extends State<Register> {
                                         MediaQuery.of(context).size.width * 0.9,
                                     margin: EdgeInsets.symmetric(vertical: 10),
                                     child: TextFormField(
-                                      onChanged: (val) {
-                                        setState(() => _phoneNumber = val);
-                                      },
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                      ),
-                                      decoration: InputDecoration(
-                                          hintStyle: TextStyle(fontSize: 20),
-                                          hintText: 'Phone Number',
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                            borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              width: 2,
-                                            ),
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                            borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              width: 3,
-                                            ),
-                                          ),
-                                          prefixIcon: Padding(
-                                            child: Icon(Icons.phone,
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                            padding: EdgeInsets.only(
-                                                left: 30, right: 10),
-                                          )),
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return "This field is required";
-                                        } else if (value.length < 10) {
-                                          return "Please enter a valid phone number";
-                                        }
-                                        if (!RegExp(
-                                                r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
-                                            .hasMatch(value)) {
-                                          return "Please enter a valid phone number";
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.9,
-                                    margin: EdgeInsets.symmetric(vertical: 10),
-                                    child: TextFormField(
                                       obscureText: true,
                                       onChanged: (val) {
                                         setState(() => _password = val);
@@ -261,9 +206,8 @@ class _RegisterState extends State<Register> {
                                   ),
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
-                                      Navigator.pop(context);
                                       if (!await user.signUp(_username, _email,
-                                          _password, _phoneNumber))
+                                          _password))
                                         _key.currentState.showSnackBar(SnackBar(
                                             content:
                                                 Text("Registration failed")));
